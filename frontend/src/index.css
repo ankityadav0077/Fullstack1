@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+:root {
+  --bg: #f9fafb;          /* very light gray */
+  --text: #1f2937;        /* neutral dark gray */
+  --card-bg: #ffffff;     /* pure white cards */
+  --accent: #f97316;      /* orange-500 */
+  --muted: #6b7280;       /* muted text */
+}
+
+
+[data-theme="dark"] {
+  --bg: #111111;
+  --text: #f1f1f1;
+  --card-bg: #1f2937;
+  --accent: #f97316;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}

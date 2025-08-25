@@ -19,9 +19,17 @@ export default function Features() {
         return (
         <div className="min-h-screen bg-slate-900 text-slate-50 transition-colors">
       <div className="max-w-5xl mx-auto px-6 py-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-2">Todo Task</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-center mb-2">Featuers and Implemantations</h1>
         <p className="text-center text-sm md:text-base text-slate-300 mb-4">
-          This page shows the goals we want to achieve in this project.
+          This page shows the goals we have completed in the project
+          <br /><br />
+           The green color represent <span className=" bg-slate-800 border-2 border-slate-700 rounded-xl px-2 py-1 border-l-green-500">Completed</span> 
+           <br /> <br />
+           The orange color represent <span className=" bg-slate-800 border-2 border-slate-700 rounded-xl px-2 py-1 border-l-orange-500">Pending</span> 
+            <br /><br />
+            <h1 className="font-bold">
+            Click on the card to toggleComplete
+            </h1>
         </p>
 
         <div className="text-center mb-6">
@@ -34,7 +42,7 @@ export default function Features() {
           {projectItems.map((p, i) => (
             <article
               key={i}
-              className={`relative flex-1 min-w-[260px]  sm:max-w-[48%] md:max-w-[23%] bg-slate-800 border border-slate-700 rounded-xl p-5 shadow-card hover:shadow-cardHover transform hover:-translate-y-1 transition border-l-5 ${p.completed ? 'border-l-green-500' : 'border-l-orange-500'}    `}
+              className={`relative flex-1 min-w-[260px]  sm:max-w-[48%] md:max-w-[23%] bg-slate-800 border border-slate-700 rounded-xl p-5 transform hover:-translate-y-1 transition border-l-5 ${p.completed ? 'border-l-green-500' : 'border-l-orange-500'}    `}
               tabIndex={0}
               aria-labelledby={`proj-${i}`}
               onClick={()=>onClickHandler(i,"project")}

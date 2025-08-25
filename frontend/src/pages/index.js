@@ -4,4 +4,7 @@ import Singup from "./Singup";
 import Layout from "./Layout";
 import UserResetration from "./UserREgistration";
 import Login from "./Login";
-export {Features,Tasktodo,Singup,Layout,UserResetration,Login};
+import Lerning from "./learnings";
+import About from "./about";
+import Home from './home'
+export {Features,Tasktodo,Singup,Layout,UserResetration,Login,Lerning,About,Home};

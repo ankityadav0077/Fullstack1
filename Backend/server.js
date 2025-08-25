@@ -7,8 +7,10 @@ console.log(process.env.PORT);       // 5000
 // console.log(process.env.DB_USER);    // myusername
 // console.log(process.env.DB_PASS);    // mypassword
 
-app.get("/",(req,res)=>{
-    res.send("hello from the backend")
+app.get("/abc",(req,res)=>{
+    console.log("hello from the backend",req);
+    res.json({ msg: "Hello from /abc" });
+    // res.send("hello from the backend")
 })
 
 app.listen(process.env.PORT,()=>{

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 export default function Header(){
-    const [showMobile,setShowMobile]=useState(true)
+    const [showMobile,setShowMobile]=useState(false)
     const menuItems=[
         {name:"Home",path:'/'},
         {name:"Todo",path:'/todo'},

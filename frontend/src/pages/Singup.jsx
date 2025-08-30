@@ -1,31 +1,51 @@
 import React from "react";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { data } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 export default function Singup(){
     const [showpass,setShowpass]=useState(false);
-    let {data,loading}={data:null,loading:null} // just to avoid error
+    const [ispassmatch,setIspassmatch]=useState(true);
+    const [msg,setMsg]=useState(null);
     const [singupData,setSingupData]=useState(null);
+    const navigate=useNavigate();
     const handleSubmit=(e)=>{
         console.log("form submitted");
         e.preventDefault();
         const formData=new FormData(e.target);
         const abc=Object.fromEntries(formData.entries());  
-        // console.log(abc);
+        console.log(abc);
+        if(abc.password!=abc.confirmPassword){
+            // alert("password and confirm password do not match"); 
+            setIspassmatch(false);   
+            setMsg("password and confirm password do not match");
+            return null;
+        }
         const data=fetch("/api/singup",{
             method:"PUT",   
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(abc)
-        }).then(res=>
-            res.json().then(data=>{
+        }).then(res=>{
+            if (res.status==200){
 
-                setSingupData(data)
-                console.log("response is ",data);
-            }
+                res.json().then(data=>{
+                    setSingupData(data)
+                    console.log("response is ",data);
+                    navigate(-1)
+                }
             )
+        }else{
+                res.json().then(data=>{
+                    console.log("response is ",data);
+                    setMsg(data.error)
+                    setIspassmatch(false);  
+                    e.target.reset();
+                }
+            )
+            }
+        }
     ).catch (err=>console.log("error is ",err));
         // You can send 'data' to your backend here using fetch or axios 
-        
     }
     return(
         <>
@@ -53,12 +73,13 @@ export default function Singup(){
                     <div className="mb-4">          
                         <label className="block text-sm font-medium mb-2" htmlFor="username">Confim Password</label>   
                         <div className="flex items-center border  border-slate-600 rounded-xl bg-slate-700   focus-within:border-blue-500">
-                        <input className="w-full px-3 py-2   rounded focus:outline-none" type={showpass ? "text" : "password"} id="confimPassword" name="password" required placeholder="password" />  
+                        <input className="w-full px-3 py-2   rounded focus:outline-none" type={showpass ? "text" : "password"} id="confimPassword" name="confirmPassword" required placeholder="confirm password" />  
                         <button type="button" onClick={() => setShowpass(!showpass)} className="ml-2 px-3 py-2 text-xl   text-slate-400 hover:text-slate-200 focus:outline-none">
                         {showpass ? <FaEyeSlash /> : <FaEye />}
                         </button> 
                         </div>
                     </div>
+                    <div className={`${ispassmatch?'hidden':'block'} text-red-500 m-2`}>{msg}</div>
                     <button onClick={()=>console.log('singup button')} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors" type="submit">Sign Up</button>
                 </form>  
             </div>    

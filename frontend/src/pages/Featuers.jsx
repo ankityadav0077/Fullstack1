@@ -27,10 +27,10 @@ export default function Features() {
            <br /> <br />
            The orange color represent <span className=" bg-slate-800 border-2 border-slate-700 rounded-xl px-2 py-1 border-l-orange-500">Pending</span> 
             <br /><br />
+        </p>
             <h1 className="font-bold">
             Click on the card to toggleComplete
             </h1>
-        </p>
 
         <div className="text-center mb-6">
           <div className="px-4 py-2 rounded-xl font-semibold text-orange-500 bg-slate-800  ">

@@ -52,7 +52,7 @@ if you use res.send() with an object, Express will convert it to JSON automatica
         <h2>welcome to lernings</h2>
         {codeSnippet.map((items)=>(
 
-            <div className="m-4 bg-slate-900 text-green-400 p-4 rounded-xl shadow-lg">
+            <div className="m-4 bg-slate-900 text-green-400 p-4 rounded-xl shadow-lg" key={codeSnippet.indexOf(items)}>
       <pre className="whitespace-pre-wrap text-sm">
         <code>{items}</code>
       </pre>

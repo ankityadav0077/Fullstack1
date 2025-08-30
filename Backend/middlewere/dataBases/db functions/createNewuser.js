@@ -1,10 +1,15 @@
 import { User } from '../models/userSchema.js';
 export default function createNewUser(req, res,next) {
     const { username, password, email } = req.body;
+    User.findOne({email:email}).then(user=>{
+        if(user){
+            return res.status(400).json({ error: "User with this email already exists" });
+        }
+    })
+    .catch(err => res.status(500).json({ error: err.message }))
     const newUser = new User({ username, password, email });
     newUser.save()
         .then(user =>{ req.user=user
-            next()
         })
         .catch(err => res.status(400).json({ error: err.message }));
     // next();//this is not need here as we are sending response in then and catch block 
